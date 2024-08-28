@@ -11,7 +11,7 @@ MiniSkin Generator is a simple yet fun tool that merges two Minecraft skins to c
   
 ## How to Use
 
-Visit [pb.73.nu/miniskin/preview](https://pb.73.nu/miniskin/preview) to try the tool directly in your browser without any downloads. If you prefer to run it locally, you can download the single HTML file from [pb.73.nu/miniskin](https://pb.73.nu/miniskin).
+Visit [miniskin.73.nu](https://miniskin.73.nu) to try the tool directly in your browser without any downloads. If you prefer to run it locally, you can download the single HTML file from [pb.73.nu/miniskin](https://pb.73.nu/miniskin).
 
 ## Local Installation
 
