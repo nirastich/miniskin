@@ -19,7 +19,7 @@ Simply download the HTML file from the above link and open it with any modern we
 
 ## Contributing
 
-Feel free to fork the project and submit pull requests. You can also open an issue if you find bugs or have suggestions for improvements.
+Feel free to fork the project and change it to your liking [here](https://pb.73.nu/miniskin/fork). You can also reach out to me at [c@73.nu](mailto:c@73.nu) if you find bugs or have suggestions for improvements.
 
 ## License
 
