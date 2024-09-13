@@ -186,6 +186,71 @@
 	</div>
 	<p>© 2024 All rights reserved</p>
 	<script>
+        function getUsersFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            const headskin = params.get('head') || '';
+            const carrierskin = params.get('carrier') || '';
+            const skin1_64x32 = params.get('s1x32') == 'true';
+            const skin1_jacket = params.get('jacket') == 'true';
+            const skin2_64x32 = params.get('s2x32') == 'true';
+            const skin2_slim = params.get('slim') == 'true';
+        
+            let img1Loaded = false;
+            let img2Loaded = false;
+        
+            // Set tickbox states based on URL parameters
+            document.getElementById('skin1_64x32').checked = skin1_64x32;
+            document.getElementById('skin1_jacket').checked = skin1_jacket;
+            document.getElementById('skin2_64x32').checked = skin2_64x32;
+            document.getElementById('skin2_slim').checked = skin2_slim;
+        
+            if (headskin) {
+                username1.value = headskin;
+                handleInput(username1, function(img) {
+                    img1Element.src = img.src;
+                    img1Data = getImageData(img);
+                    img1Loaded = true;
+                    if (img1Loaded && img2Loaded) combineSkins();
+                });
+            }
+        
+            if (carrierskin) {
+                username2.value = carrierskin;
+                handleInput(username2, function(img) {
+                    img2Element.src = img.src;
+                    img2Data = getImageData(img);
+                    img2Loaded = true;
+                    if (img1Loaded && img2Loaded) combineSkins();
+                });
+            }
+        
+            return {
+                headskin,
+                carrierskin,
+                skin1_64x32,
+                skin1_jacket,
+                skin2_64x32,
+                skin2_slim
+            };
+        }
+
+        function setNamesInUrl(headskin, carrierskin) {
+            const params = new URLSearchParams();
+            const skin1_64x32 = document.getElementById('skin1_64x32').checked;
+            const skin1_jacket = document.getElementById('skin1_jacket').checked;
+            const skin2_64x32 = document.getElementById('skin2_64x32').checked;
+            const skin2_slim = document.getElementById('skin2_slim').checked;
+        
+            params.set('head', headskin);
+            params.set('carrier', carrierskin);
+            params.set('s1x32', skin1_64x32);
+            params.set('jacket', skin1_jacket);
+            params.set('s2x32', skin2_64x32);
+            params.set('slim', skin2_slim);
+        
+            window.history.replaceState({}, '', `${window.location.pathname}?${params}`);
+        }
+	    
 		const upload1 = document.getElementById('upload1');
 		const upload2 = document.getElementById('upload2');
 		const username1 = document.getElementById('username1');
@@ -255,6 +320,13 @@
 			const skin1_jacket = document.getElementById('skin1_jacket').checked;
 			const skin2_64x32 = document.getElementById('skin2_64x32').checked;
 			const skin2_slim = document.getElementById('skin2_slim').checked;
+			
+    		const headskin = document.getElementById('username1').value;
+    		const carrierskin = document.getElementById('username2').value;
+			
+			if (headskin !== "" && carrierskin !== "") {
+			    setNamesInUrl(headskin,carrierskin);
+			}
 			
 			const combinedData = ctx.createImageData(64, 64);
 			const data = combinedData.data;
@@ -518,7 +590,23 @@
 
 			// right leg
 			if (skin2_64x32) {
-				copyArea(data, 0, 16, 16, 16, 16, 48, data);
+				copyArea(data, 0, 16, 16, 4, 16, 48, data);
+				copyArea(data, 12, 20, 1, 12, 31, 52, data);
+				copyArea(data, 13, 20, 1, 12, 30, 52, data);
+				copyArea(data, 14, 20, 1, 12, 29, 52, data);
+				copyArea(data, 15, 20, 1, 12, 28, 52, data);
+				copyArea(data, 0, 20, 1, 12, 27, 52, data);
+				copyArea(data, 1, 20, 1, 12, 26, 52, data);
+				copyArea(data, 2, 20, 1, 12, 25, 52, data);
+				copyArea(data, 3, 20, 1, 12, 24, 52, data);
+				copyArea(data, 4, 20, 1, 12, 23, 52, data);
+				copyArea(data, 5, 20, 1, 12, 22, 52, data);
+				copyArea(data, 6, 20, 1, 12, 21, 52, data);
+				copyArea(data, 7, 20, 1, 12, 20, 52, data);
+				copyArea(data, 8, 20, 1, 12, 19, 52, data);
+				copyArea(data, 9, 20, 1, 12, 18, 52, data);
+				copyArea(data, 10, 20, 1, 12, 17, 52, data);
+				copyArea(data, 11, 20, 1, 12, 16, 52, data);
 			} else {
 				copyArea(img2Data.data, 24, 48, 4, 4, 24, 48, data);
 				copyArea(img2Data.data, 32, 16, 4, 4, 20, 48, data);
@@ -582,7 +670,23 @@
 
 			// right arm
 			if (skin2_64x32) {
-				copyArea(data, 40, 16, 16, 16, 32, 48, data);
+				copyArea(data, 40, 16, 16, 4, 32, 48, data);
+				copyArea(data, 52, 20, 1, 12, 47, 52, data);
+				copyArea(data, 53, 20, 1, 12, 46, 52, data);
+				copyArea(data, 54, 20, 1, 12, 45, 52, data);
+				copyArea(data, 55, 20, 1, 12, 44, 52, data);
+				copyArea(data, 40, 20, 1, 12, 43, 52, data);
+				copyArea(data, 41, 20, 1, 12, 42, 52, data);
+				copyArea(data, 42, 20, 1, 12, 41, 52, data);
+				copyArea(data, 43, 20, 1, 12, 40, 52, data);
+				copyArea(data, 44, 20, 1, 12, 39, 52, data);
+				copyArea(data, 45, 20, 1, 12, 38, 52, data);
+				copyArea(data, 46, 20, 1, 12, 37, 52, data);
+				copyArea(data, 47, 20, 1, 12, 36, 52, data);
+				copyArea(data, 48, 20, 1, 12, 35, 52, data);
+				copyArea(data, 49, 20, 1, 12, 34, 52, data);
+				copyArea(data, 50, 20, 1, 12, 33, 52, data);
+				copyArea(data, 51, 20, 1, 12, 32, 52, data);
 			} else {
 				if (skin2_slim) {
 					copyArea(img2Data.data, 36, 48, 6, 4, 36, 48, data, true);
@@ -705,6 +809,7 @@
 		document.getElementById('skin2_slim').addEventListener('change', function() {
 			if (img2Data) combineSkins();
 		});
+        getUsersFromUrl();
 	</script>
 </body>
 </html>
