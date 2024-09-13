@@ -8,7 +8,7 @@ MiniSkin Generator is a simple yet fun tool that merges two Minecraft skins to c
 - **Skin Preview:** Uses the vzge.me API to generate a preview of the new skin.
 - **Flexibility:** Supports both 64x64 and 64x32 skin dimensions, including slim skins.
 - **Layer Control:** Options to show or hide the second layer of the upper and lower body parts to ensure the best look.
-- **Query Parameters:** You can automatically fill in usernames and skin options via URL query parameters [Example](https://miniskin.73.nu/?head=Chris500&carrier=v3v&s1x32=false&jacket=false&s2x32=false&slim=false) The options can also be set via the URL. If both usernames are provided in the query, the skin combination process will automatically run on page load. Any changes will update the URL dynamically.
+- **Query Parameters:** You can automatically fill in usernames and skin options via URL query parameters ([Example](https://miniskin.73.nu/?head=Chris500&carrier=v3v&s1x32=false&jacket=false&s2x32=false&slim=false)). The options can also be set via the URL. If both usernames are provided in the query, the skin combination process will automatically run on page load. Any changes will update the URL dynamically.
  
   
 ## How to Use
