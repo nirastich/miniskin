@@ -4,7 +4,7 @@ MiniSkin Generator is a simple yet fun tool that merges two Minecraft skins to c
 
 ## Features
 
-- **Dual Input Options:** Input skins either by username (utilizing the mineskin.eu API) or by directly uploading an image.
+- **Dual Input Options:** Input skins either by username (utilizing the vzge.me API) or by directly uploading an image.
 - **Skin Preview:** Uses the vzge.me API to generate a preview of the new skin.
 - **Flexibility:** Supports both 64x64 and 64x32 skin dimensions, including slim skins.
 - **Layer Control:** Options to show or hide the second layer of the upper and lower body parts to ensure the best look.
