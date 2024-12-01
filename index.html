@@ -135,6 +135,19 @@
 			margin: auto;
 			margin-top: 50px;
 		}
+		
+		@media screen and (max-width: 750px) {
+		    .input-container {
+		        display: block;
+		    }
+		    .checkbox-group {
+		        margin-left: 0;
+		        margin-top: 10px;
+		    }
+		    input[type="text"] {
+		        width: 50%;
+		    }
+        }
 	</style>
 </head>
 <body>
@@ -148,17 +161,18 @@
 	<fieldset class="input-container">
 		<legend for="username1">Head-Skin</legend>
 		<input type="text" id="username1" placeholder="Username">
-		<label class="upload_label" for="upload1">Upload File</label>
+		<label class="upload_label" for="upload1">Upload&#8239;File</label>
 		<input type="file" id="upload1" accept="image/png">
 		<div class="checkbox-group">
 			<label><input type="checkbox" id="skin1_64x32">64x32 Skin</label>
 			<label><input type="checkbox" id="skin1_jacket"><abbr title="Second skin layer for body and pants ignoring head">Show Jacket</abbr></label>
+			<label><input type="checkbox" id="fix_eyes"><abbr title="Check this box if eyes are not showing correctly">Fix Eyes</abbr></label>
 		</div>
 	</fieldset>
 	<fieldset class="input-container">
 		<legend for="username2">Carrier-Skin</legend>
 		<input type="text" id="username2" placeholder="Username">
-		<label class="upload_label" for="upload2">Upload File</label>
+		<label class="upload_label" for="upload2">Upload&#8239;File</label>
 		<input type="file" id="upload2" accept="image/png">
 		<div class="checkbox-group">
 			<label><input type="checkbox" id="skin2_64x32">64x32 Skin</label>
@@ -194,6 +208,7 @@
             const skin1_jacket = params.get('jacket') == 'true';
             const skin2_64x32 = params.get('s2x32') == 'true';
             const skin2_slim = params.get('slim') == 'true';
+            const fix_eyes = params.get('eyes') == 'true';
         
             let img1Loaded = false;
             let img2Loaded = false;
@@ -203,6 +218,7 @@
             document.getElementById('skin1_jacket').checked = skin1_jacket;
             document.getElementById('skin2_64x32').checked = skin2_64x32;
             document.getElementById('skin2_slim').checked = skin2_slim;
+            document.getElementById('fix_eyes').checked = fix_eyes;
         
             if (headskin) {
                 username1.value = headskin;
@@ -230,7 +246,8 @@
                 skin1_64x32,
                 skin1_jacket,
                 skin2_64x32,
-                skin2_slim
+                skin2_slim,
+                fix_eyes
             };
         }
 
@@ -240,6 +257,7 @@
             const skin1_jacket = document.getElementById('skin1_jacket').checked;
             const skin2_64x32 = document.getElementById('skin2_64x32').checked;
             const skin2_slim = document.getElementById('skin2_slim').checked;
+            const fix_eyes = document.getElementById('fix_eyes').checked;
         
             params.set('head', headskin);
             params.set('carrier', carrierskin);
@@ -247,6 +265,7 @@
             params.set('jacket', skin1_jacket);
             params.set('s2x32', skin2_64x32);
             params.set('slim', skin2_slim);
+            params.set('eyes', fix_eyes);
         
             window.history.replaceState({}, '', `${window.location.pathname}?${params}`);
         }
@@ -320,6 +339,7 @@
 			const skin1_jacket = document.getElementById('skin1_jacket').checked;
 			const skin2_64x32 = document.getElementById('skin2_64x32').checked;
 			const skin2_slim = document.getElementById('skin2_slim').checked;
+			const fix_eyes = document.getElementById('fix_eyes').checked;
 			
     		const headskin = document.getElementById('username1').value;
     		const carrierskin = document.getElementById('username2').value;
@@ -350,7 +370,12 @@
 
 			// head front
 			copyArea(img1Data.data, 8, 9, 8, 2, 8, 8, data);
-			copyArea(img1Data.data, 8, 12, 8, 4, 8, 10, data);
+			if (fix_eyes) {
+    			copyArea(img1Data.data, 8, 11, 8, 4, 8, 10, data);
+			} else {
+    			copyArea(img1Data.data, 8, 12, 8, 4, 8, 10, data);
+			}
+			copyArea(img1Data.data, 4, 20, 4, 1, 12, 15, data);
 			copyArea(img1Data.data, 20, 21, 3, 1, 8, 13, data);
 			copyArea(img1Data.data, 25, 21, 3, 1, 13, 13, data);
 			copyArea(img1Data.data, 20, 22, 8, 1, 8, 14, data);
@@ -406,7 +431,11 @@
 
 			// 2nd layer head front
 			copyArea(img1Data.data, 40, 9, 8, 2, 40, 8, data);
-			copyArea(img1Data.data, 40, 12, 8, 4, 40, 10, data);
+			if (fix_eyes) {
+    			copyArea(img1Data.data, 40, 11, 8, 4, 40, 10, data);
+			} else {
+    			copyArea(img1Data.data, 40, 12, 8, 4, 40, 10, data);
+			}
 			if (skin1_jacket) {
 				copyArea(img1Data.data, 20, 37, 3, 1, 40, 13, data);
 				copyArea(img1Data.data, 25, 37, 3, 1, 45, 13, data);
@@ -815,6 +844,10 @@
 		});
 
 		document.getElementById('skin2_slim').addEventListener('change', function() {
+			if (img2Data) combineSkins();
+		});
+
+		document.getElementById('fix_eyes').addEventListener('change', function() {
 			if (img2Data) combineSkins();
 		});
         getUsersFromUrl();
