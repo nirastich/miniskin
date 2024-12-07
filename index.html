@@ -12,20 +12,19 @@
 			flex-direction: column;
 			align-items: center;
 			padding: 20px;
+			text-align: center;
 		}
 
 		h1 {
 			color: #333;
+			margin: auto;
 			margin-bottom: 0;
 		}
 
 		h2 {
 			color: #333;
+			margin: auto;
 			margin-top: 0;
-		}
-
-		#credits {
-			margin: 0;
 		}
 
 		img:not(#example, .exampleheads, .preview) {
@@ -36,7 +35,7 @@
 		}
 
 		.example-container {
-			margin: 20px;
+			margin: auto;
 			display: flex;
 			justify-content: space-around;
 			width: 100%;
@@ -45,18 +44,27 @@
 
 		#example {
 			display: inline-block;
-			height: 200px;
+			height: 40vw;
+			max-height: 200px;
 		}
 
 		.exampleheads {
 			display: inline-block;
 			height: 100px;
 			margin-top: 50px;
+			width: 20vw;
+			height: 20vw;
+			max-width: 100px;
+			max-height: 100px;
 		}
 
 		legend {
+			background: white;
 			color: #333;
 			font-weight: bold;
+			border-radius: 3px;
+			border: 1px solid #aaa;
+			padding: 1px 3px;
 		}
 
 		.input-container {
@@ -68,6 +76,7 @@
 			width: calc(100% - 40px);
 			max-width: 680px;
 			display: flex;
+            flex-wrap: wrap;
 			justify-content: space-between;
 			align-items: center;
 		}
@@ -120,6 +129,7 @@
 		}
 
 		.images-container {
+		    margin: auto;
 			display: flex;
 			justify-content: space-around;
 			width: 100%;
@@ -137,15 +147,19 @@
 		}
 		
 		@media screen and (max-width: 750px) {
-		    .input-container {
-		        display: block;
+		    body {
+			    padding: 0;
+		    }
+		    .break {
+                flex-basis: 100%;
+                height: 0;
 		    }
 		    .checkbox-group {
 		        margin-left: 0;
 		        margin-top: 10px;
 		    }
 		    input[type="text"] {
-		        width: 50%;
+		        width: 20vw;
 		    }
         }
 	</style>
@@ -161,8 +175,9 @@
 	<fieldset class="input-container">
 		<legend for="username1">Head-Skin</legend>
 		<input type="text" id="username1" placeholder="Username">
-		<label class="upload_label" for="upload1">Upload&#8239;File</label>
+		<label class="upload_label" for="upload1">Upload&nbsp;File</label>
 		<input type="file" id="upload1" accept="image/png">
+		<div class="break"></div>
 		<div class="checkbox-group">
 			<label><input type="checkbox" id="skin1_64x32">64x32 Skin</label>
 			<label><input type="checkbox" id="skin1_jacket"><abbr title="Second skin layer for body and pants ignoring head">Show Jacket</abbr></label>
@@ -172,8 +187,9 @@
 	<fieldset class="input-container">
 		<legend for="username2">Carrier-Skin</legend>
 		<input type="text" id="username2" placeholder="Username">
-		<label class="upload_label" for="upload2">Upload&#8239;File</label>
+		<label class="upload_label" for="upload2">Upload&nbsp;File</label>
 		<input type="file" id="upload2" accept="image/png">
+		<div class="break"></div>
 		<div class="checkbox-group">
 			<label><input type="checkbox" id="skin2_64x32">64x32 Skin</label>
 			<label><input type="checkbox" id="skin2_slim">Slim</label>
