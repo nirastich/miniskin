@@ -349,6 +349,14 @@
 				}
 			}
 		}
+		
+		function setPixel(destData, x, y, color) {
+            const index = ((y * 64) + x) * 4;
+            destData[index + 0] = color[0]; // Red
+            destData[index + 1] = color[1]; // Green
+            destData[index + 2] = color[2]; // Blue
+            destData[index + 3] = color[3]; // Alpha
+        }
 
 		function combineSkins() {
 			const skin1_64x32 = document.getElementById('skin1_64x32').checked;
@@ -366,6 +374,72 @@
 			
 			const combinedData = ctx.createImageData(64, 64);
 			const data = combinedData.data;
+			
+			// watermark 73.nu/MS
+			// 7
+			setPixel(data, 62, 46, [0, 0, 0, 255]);
+			setPixel(data, 61, 46, [0, 0, 0, 255]);
+			setPixel(data, 60, 46, [0, 0, 0, 255]);
+			setPixel(data, 59, 45, [0, 0, 0, 255]);
+			setPixel(data, 58, 45, [0, 0, 0, 255]);
+			setPixel(data, 58, 46, [0, 0, 0, 255]);
+			setPixel(data, 58, 47, [0, 0, 0, 255]);
+			// 3
+			setPixel(data, 62, 43, [0, 0, 0, 255]);
+			setPixel(data, 62, 42, [0, 0, 0, 255]);
+			setPixel(data, 61, 41, [0, 0, 0, 255]);
+			setPixel(data, 60, 42, [0, 0, 0, 255]);
+			setPixel(data, 59, 41, [0, 0, 0, 255]);
+			setPixel(data, 58, 42, [0, 0, 0, 255]);
+			setPixel(data, 58, 43, [0, 0, 0, 255]);
+			// .
+			setPixel(data, 62, 39, [90, 90, 90, 255]);
+			// n
+			setPixel(data, 62, 37, [0, 0, 0, 255]);
+			setPixel(data, 61, 37, [0, 0, 0, 255]);
+			setPixel(data, 60, 37, [0, 0, 0, 255]);
+			setPixel(data, 60, 36, [0, 0, 0, 255]);
+			setPixel(data, 61, 35, [0, 0, 0, 255]);
+			setPixel(data, 62, 35, [0, 0, 0, 255]);
+			// u
+			setPixel(data, 60, 31, [0, 0, 0, 255]);
+			setPixel(data, 61, 33, [0, 0, 0, 255]);
+			setPixel(data, 60, 33, [0, 0, 0, 255]);
+			setPixel(data, 62, 32, [0, 0, 0, 255]);
+			setPixel(data, 61, 31, [0, 0, 0, 255]);
+			setPixel(data, 62, 31, [0, 0, 0, 255]);
+			// /
+			setPixel(data, 62, 29, [90, 90, 90, 255]);
+			setPixel(data, 61, 29, [90, 90, 90, 255]);
+			setPixel(data, 60, 28, [90, 90, 90, 255]);
+			setPixel(data, 59, 28, [90, 90, 90, 255]);
+			setPixel(data, 58, 27, [90, 90, 90, 255]);
+			setPixel(data, 57, 27, [90, 90, 90, 255]);
+			// M
+			setPixel(data, 62, 25, [0, 0, 0, 255]);
+			setPixel(data, 61, 25, [0, 0, 0, 255]);
+			setPixel(data, 60, 25, [0, 0, 0, 255]);
+			setPixel(data, 59, 25, [0, 0, 0, 255]);
+			setPixel(data, 58, 25, [0, 0, 0, 255]);
+			setPixel(data, 59, 24, [0, 0, 0, 255]);
+			setPixel(data, 60, 23, [0, 0, 0, 255]);
+			setPixel(data, 59, 22, [0, 0, 0, 255]);
+			setPixel(data, 62, 21, [0, 0, 0, 255]);
+			setPixel(data, 61, 21, [0, 0, 0, 255]);
+			setPixel(data, 60, 21, [0, 0, 0, 255]);
+			setPixel(data, 59, 21, [0, 0, 0, 255]);
+			setPixel(data, 58, 21, [0, 0, 0, 255]);
+			// S
+			setPixel(data, 62, 19, [0, 0, 0, 255]);
+			setPixel(data, 62, 18, [0, 0, 0, 255]);
+			setPixel(data, 62, 17, [0, 0, 0, 255]);
+			setPixel(data, 61, 16, [0, 0, 0, 255]);
+			setPixel(data, 60, 17, [0, 0, 0, 255]);
+			setPixel(data, 60, 18, [0, 0, 0, 255]);
+			setPixel(data, 59, 19, [0, 0, 0, 255]);
+			setPixel(data, 58, 18, [0, 0, 0, 255]);
+			setPixel(data, 58, 17, [0, 0, 0, 255]);
+			setPixel(data, 58, 16, [0, 0, 0, 255]);
 
 			// base
 			//copyArea(img1Data.data, 0, 0, 64, 64, 0, 0, data);
@@ -789,20 +863,20 @@
 			}
 
 			ctx.putImageData(combinedData, 0, 0);
-			combinedImgElement.src = canvas.toDataURL();
-
-			const resultPreview = document.getElementById('result-preview');
-			resultPreview.style.display = 'block';
-
-			const base64 = combinedImgElement.src.split(',')[1]
-				.replace(/\+/g, '-')
-				.replace(/\//g, '_')
-				.replace(/=+$/, '');
-			
-			var slimquery = skin2_slim ? "?slim" : "";
-
-			document.getElementById('full-body-preview').src = `https://vzge.me/frontfull/384/${base64}` + slimquery;
-			document.getElementById('head-preview').src = `https://vzge.me/head/256/${base64}`;
+            combinedImgElement.src = canvas.toDataURL();
+ 
+            const resultPreview = document.getElementById('result-preview');
+            resultPreview.style.display = 'block';
+ 
+            const base64 = combinedImgElement.src.split(',')[1]
+                .replace(/\+/g, '-')
+                .replace(/\//g, '_')
+                .replace(/=+$/, '');
+            
+            var slimquery = skin2_slim ? "?slim" : "";
+ 
+            document.getElementById('full-body-preview').src = `https://vzge.me/frontfull/384/${base64}` + slimquery;
+            document.getElementById('head-preview').src = `https://vzge.me/head/256/${base64}`;
 		}
 
 		function handleInput(input, callback) {
