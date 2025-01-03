@@ -350,7 +350,7 @@
 			}
 		}
 		
-		function setPixel(destData, x, y, color) {
+        function setPixel(destData, x, y, color) {
             const index = ((y * 64) + x) * 4;
             destData[index + 0] = color[0]; // Red
             destData[index + 1] = color[1]; // Green
