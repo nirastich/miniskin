@@ -324,12 +324,12 @@
         
             params.set('head', headskin);
             params.set('carrier', carrierskin);
-            params.set('s1x32', skin1_64x32);
-            params.set('jacket', skin1_jacket);
-            params.set('s2x32', skin2_64x32);
-            params.set('slim', skin2_slim);
-            params.set('eyes', fix_eyes);
-            params.set('arms', side_arms);
+            (skin1_64x32) ? params.set('s1x32', skin1_64x32) : params.delete('s1x32');
+            (skin1_jacket) ? params.set('jacket', skin1_jacket) : params.delete('jacket');
+            (skin2_64x32) ? params.set('s2x32', skin2_64x32) : params.delete('s2x32');
+            (skin2_slim) ? params.set('slim', skin2_slim) : params.delete('slim');
+            (fix_eyes) ? params.set('eyes', fix_eyes) : params.delete('eyes');
+            (side_arms) ? params.set('arms', side_arms) : params.delete('arms');
         
             window.history.replaceState({}, '', `${window.location.pathname}?${params}`);
         }
