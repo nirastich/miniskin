@@ -22,5 +22,6 @@ Feel free to fork the project and change it to your liking [here](https://pb.73.
 
 ## License
 
-GNU General Public License v3.0
+> GNU General Public License v3.0
+
 This project is free to use and modify for any purposes, as long as it remains open source.
